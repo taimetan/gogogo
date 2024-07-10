@@ -1,13 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:gogogo/Utils/size_utils.dart';
+import 'package:gogogo/View/LogReg/Login.dart';
+
 import 'package:gogogo/WidgetsAssets/custom_image_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Register extends StatelessWidget {
-  const Register({super.key});
+class Regis extends StatelessWidget {
+  const Regis({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Regis',
+      home: const RegisPage(title: 'Regis'),
+    );
+  }
+}
+
+class RegisPage extends StatefulWidget {
+  const RegisPage({super.key, required this.title});
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
+  @override
+  State<RegisPage> createState() => _MyRegisPageState();
+}
+
+class _MyRegisPageState extends State<RegisPage> {
+  String name = '';
+  String number = '';
+  
+  void CheckRegister(value) {
+    setState(() {
+      
+      number = value;
+    });
+    
+  }
 
   @override
   Widget build(BuildContext context) {
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
     return Scaffold(
       backgroundColor: Color(0xFFFEFEFE),
       body: SafeArea(
@@ -69,28 +117,32 @@ class Register extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Color(0xFFD0D0D0)),
-                                    borderRadius: BorderRadius.circular(16),
-                                    color: Color(0xFFFFFFFF),
-                                  ),
-                                  child: Container(
-                                    padding: EdgeInsets.fromLTRB(15, 13, 15, 13),
-                                    child: 
-                                    Text(
-                                      'Input your name',
-                                      style: GoogleFonts.getFont(
-                                        'Poppins',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                        height: 1.4,
-                                        color: Color(0xFF8A8A8A),
+                                Container( //name regis
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Color(0xFFD0D0D0)),
+                                      borderRadius: BorderRadius.circular(16),
+                                      color: Color(0xFFFFFFFF),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(15, 1, 15, 13),
+                                      child: TextField(
+                                        onChanged: (value){setState(() {
+                                          name = value;
+                                        });},
+                                        decoration: InputDecoration(
+                                          hintText: 'Input your name',
+                                          hintStyle: GoogleFonts.getFont(
+                                            'Poppins',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
+                                            
+                                            color: Color(0xFF8A8A8A),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
                               ],
                             ),
                           ),
@@ -115,28 +167,35 @@ class Register extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Color(0xFFD0D0D0)),
-                                  borderRadius: BorderRadius.circular(16),
-                                  color: Color(0xFFFFFFFF),
-                                ),
-                                child: Container(
-                                  padding: EdgeInsets.fromLTRB(15, 13, 15, 13),
-                                  child: 
-                                  Text(
-                                    'Input your No. Handphone',
-                                    style: GoogleFonts.getFont(
-                                      'Poppins',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      height: 1.4,
-                                      color: Color(0xFF8A8A8A),
+                               Container( //name regis
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Color(0xFFD0D0D0)),
+                                      borderRadius: BorderRadius.circular(16),
+                                      color: Color(0xFFFFFFFF),
+                                    
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(15, 1, 15, 13),
+                                      
+                                      child: TextField(
+                                        onChanged: (value){setState(() {
+                                          number = value;
+                                        });},
+                                        decoration: InputDecoration(
+                                          hintText: 'No. Handphone',
+                                          hintStyle: GoogleFonts.getFont(
+                                            'Poppins',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
+                                            
+                                            color: Color(0xFF8A8A8A),
+                                            
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
                             ],
                           ),
                         ],
@@ -197,29 +256,33 @@ class Register extends StatelessWidget {
                   ],
                 ),
               ),
-                Container(
-                width: double.infinity, // Spans the entire available width
-                margin: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
-                decoration: BoxDecoration(
-                  color: Color(0xFFCACACA),
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    // Handle registration logic
-                  },
-                  child: Text(
-                    'Register',
-                    style: GoogleFonts.getFont(
-                      'Poppins',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      height: 1.4,
-                      color: Color(0xFFFEFEFE),
-                    ),
-                  ),
-                ),
-              ),
+               Container( //register
+  width: double.infinity, // Spans the entire available width
+  margin: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
+  decoration: BoxDecoration(
+    color:  Color(0xFF43936C) ,
+    borderRadius: BorderRadius.circular(16.0),
+  ),
+  child: TextButton(
+    onPressed: () {
+      // Navigate to login screen
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
+      );
+    },
+    child: Text(
+      'Register',
+      style: GoogleFonts.getFont(
+        'Poppins',
+        fontWeight: FontWeight.w500,
+        fontSize: 14,
+        height: 1.4,
+        color: Color(0xFFFEFEFE),
+      ),
+    ),
+  ),
+),
             ],
           ),
         ),

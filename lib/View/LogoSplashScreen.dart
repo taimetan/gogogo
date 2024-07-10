@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gogogo/Utils/size_utils.dart';
-import 'package:gogogo/View/Register.dart';
+import 'package:gogogo/View/LogReg/Regis.dart';
+
 import 'package:gogogo/WidgetsAssets/custom_image_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,7 +19,7 @@ class LogoSplashScreen extends StatelessWidget {
   void _navigateToRegisterScreen(BuildContext context) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => Register()),
+      MaterialPageRoute(builder: (context) => Regis()),
     );
   }
 }
