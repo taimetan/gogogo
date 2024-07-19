@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gogogo/Utils/size_utils.dart';
-import 'package:gogogo/View/Home/Home.dart';
+
 import 'package:gogogo/View/Home/Home_skele.dart';
-import 'package:gogogo/View/LogReg/Login.dart';
+
 import 'package:gogogo/View/LogReg/Regis.dart';
-import 'package:gogogo/WidgetsAssets/custom_image_view.dart';
+
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/material.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

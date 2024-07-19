@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gogogo/Utils/size_utils.dart';
 import 'package:gogogo/View/Home/Home.dart';
-import 'package:gogogo/View/Home/Home_skele.dart';
-import 'package:gogogo/View/LogReg/Login.dart';
-import 'package:gogogo/View/LogReg/Regis.dart';
-import 'package:gogogo/WidgetsAssets/custom_image_view.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/material.dart';
 
 class HomeSKE extends StatelessWidget {
   const HomeSKE({super.key});
@@ -34,10 +27,13 @@ class _NavigationExampleState extends State<NavigationExample> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
-      bottomNavigationBar: Container(
+      bottomNavigationBar: Material(
+        elevation: 4,
+        child: Container(
+        
   decoration: BoxDecoration(
     borderRadius: BorderRadius.circular(20.0),
-    border: Border.all(color: Colors.black, width: 2.0), // Black border with width 2.0
+    border: Border.all(color: const Color.fromARGB(255, 134, 134, 134), width: 1.0), // Black border with width 2.0
   ),
   child: ClipRRect(
     borderRadius: BorderRadius.circular(20.0),
@@ -45,7 +41,7 @@ class _NavigationExampleState extends State<NavigationExample> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20.0),
-        border: Border.all(color: Colors.grey, width: 1.0), // Inner grey border
+        border: Border.all(color: const Color.fromARGB(255, 211, 210, 210), width: 1.0), // Inner grey border
       ),
       child: NavigationBar(
         onDestinationSelected: (int index) {
@@ -53,7 +49,7 @@ class _NavigationExampleState extends State<NavigationExample> {
             currentPageIndex = index;
           });
         },
-        indicatorColor: Colors.amber,
+        indicatorColor: const Color.fromARGB(255, 223, 219, 208),
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
@@ -73,23 +69,18 @@ class _NavigationExampleState extends State<NavigationExample> {
       ),
     ),
   ),
-),
+)
+
+      ),
 
 
       body: <Widget>[
         /// Home page
-        Card(
-          shadowColor: Colors.transparent,
-          margin: const EdgeInsets.all(8.0),
-          child: SizedBox.expand(
-            child: Center(
-              child: Text(
-                'Home page',
-                style: theme.textTheme.titleLarge,
-              ),
-            ),
-          ),
-        ),
+        Home()
+        
+        
+        
+        ,
 
         /// Notifications page
         const Padding(
@@ -112,7 +103,11 @@ class _NavigationExampleState extends State<NavigationExample> {
               ),
             ],
           ),
-        ),
+        )
+        
+        
+        
+        ,
 
         /// Messages page
         ListView.builder(

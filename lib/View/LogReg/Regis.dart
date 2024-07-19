@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gogogo/Utils/size_utils.dart';
+
 import 'package:gogogo/View/LogReg/Login.dart';
 
-import 'package:gogogo/WidgetsAssets/custom_image_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Regis extends StatelessWidget {
