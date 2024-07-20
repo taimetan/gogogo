@@ -34,6 +34,12 @@ class _HomeState extends State<Home> {
     // Add your logic to navigate to the view based on buttonText
   }
 
+  bool Bannerturnoff = false; //
+  void turnoffbanner() {
+    setState(() {
+      Bannerturnoff = !Bannerturnoff;
+    });
+  }
   List<Widget> carouselItems = [
     // Your carousel item widgets here
     Container(
@@ -53,9 +59,10 @@ class _HomeState extends State<Home> {
             'assets/images/poster-bike-ride-called-big-bicyclist_40382-409.avif'),
         fit: BoxFit.cover,
       ),
-    ),
+    )
     // 'assets/images/poster-bike-ride-called-big-bicyclist_40382-409.avif'
   ];
+
   @override
   Widget build(BuildContext context) {
     const Key centerKey = ValueKey<String>('bottom-sliver-list');
@@ -64,12 +71,20 @@ class _HomeState extends State<Home> {
         body: Column(
       children: [
         Container(height: 40, child: Text('')),
-        Searchbar(onSearch: _onSearch),
-        Expanded(
-          flex: 1,
-          child: AutoSwipeCarousel(
-            children: carouselItems,
-          ),
+        Searchbar(onSearch: _onSearch,onTap: turnoffbanner),
+        Builder(
+          builder: (context) {
+            if (!Bannerturnoff) {
+              return Expanded(
+                flex: 1,
+                child: AutoSwipeCarousel(
+                  children: carouselItems,
+                ),
+              );
+            }else{
+              return Container();
+            }
+          },
         ),
         Row(
           children: [
@@ -90,7 +105,10 @@ class _HomeState extends State<Home> {
                           borderRadius:
                               BorderRadius.circular(0.0), // Square border
                           side: BorderSide(
-                            color: tabActive == 1 ? Colors.grey : Colors.transparent, // Set border color to gray
+                            color: tabActive == 1
+                                ? Colors.grey
+                                : Colors
+                                    .transparent, // Set border color to gray
                             width: 2.0, // Adjust border width (optional)
                           ),
                         ),
@@ -103,12 +121,59 @@ class _HomeState extends State<Home> {
                       child: Text('Xe'),
                     ),
                     TextButton(
-                        onPressed: () => {
-                              setState(() {
-                                tabActive = 2;
-                              })
-                            },
-                        child: Text('Mu'))
+                      onPressed: () {
+                        // Your button action here
+                        setState(() {
+                          tabActive = 2;
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(0.0), // Square border
+                          side: BorderSide(
+                            color: tabActive == 2
+                                ? Colors.grey
+                                : Colors
+                                    .transparent, // Set border color to gray
+                            width: 2.0, // Adjust border width (optional)
+                          ),
+                        ),
+                        minimumSize: Size(100, 50), // Increase size slightly
+                        padding:
+                            EdgeInsets.all(10.0), // Add some padding (optional)
+                        textStyle: TextStyle(
+                            fontSize: 16.0), // Increase text size (optional)
+                      ),
+                      child: Text('Mũ'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        // Your button action here
+                        setState(() {
+                          tabActive = 3;
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(0.0), // Square border
+                          side: BorderSide(
+                            color: tabActive == 3
+                                ? Colors.grey
+                                : Colors
+                                    .transparent, // Set border color to gray
+                            width: 2.0, // Adjust border width (optional)
+                          ),
+                        ),
+                        minimumSize: Size(100, 50), // Increase size slightly
+                        padding:
+                            EdgeInsets.all(10.0), // Add some padding (optional)
+                        textStyle: TextStyle(
+                            fontSize: 16.0), // Increase text size (optional)
+                      ),
+                      child: Text('Găng Tay'),
+                    ),
                   ],
                 ),
               ),

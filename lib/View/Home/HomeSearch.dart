@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class Searchbar extends StatefulWidget {
   final Function(String) onSearch; // Callback for handling search text changes
+  final Function() onTap; // Callback for handling search text changes
 
-  const Searchbar({Key? key, required this.onSearch}) : super(key: key);
+  const Searchbar({Key? key, required this.onSearch,required this.onTap}) : super(key: key);
 
   @override
   State<Searchbar> createState() => _SearchbarState();
@@ -44,10 +45,7 @@ class _SearchbarState extends State<Searchbar> {
           IconButton(
             icon: const Icon(Icons.close), // Close icon (optional)
             onPressed: () {
-              setState(() {
-                _searchText = ''; // Clear search text on tap
-              });
-              widget.onSearch(''); // Call callback with empty text on clear
+              widget.onTap();// Call callback with empty text on clear
             },
           ), // Uncomment this line to include a clear button
         ],
