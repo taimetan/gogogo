@@ -33,7 +33,7 @@ class _NavigationExampleState extends State<NavigationExample> {
         
   decoration: BoxDecoration(
     borderRadius: BorderRadius.circular(20.0),
-    border: Border.all(color: const Color.fromARGB(255, 134, 134, 134), width: 1.0), // Black border with width 2.0
+    border: Border.all(color: Color.fromARGB(255, 238, 238, 238), width: 1.0), // Black border with width 2.0
   ),
   child: ClipRRect(
     borderRadius: BorderRadius.circular(20.0),
@@ -41,7 +41,7 @@ class _NavigationExampleState extends State<NavigationExample> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20.0),
-        border: Border.all(color: const Color.fromARGB(255, 211, 210, 210), width: 1.0), // Inner grey border
+        border: Border.all(color: Color.fromARGB(255, 255, 255, 255), width: 1.0), // Inner grey border
       ),
       child: NavigationBar(
         onDestinationSelected: (int index) {
