@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gogogo/Model/Bike.dart';
@@ -17,17 +18,26 @@ class ProDetails extends StatefulWidget {
 }
 
 class _ProDetailsState extends State<ProDetails> {
+    int Price = 0;
+
   @override
   Widget build(BuildContext context) {
     // final String name = widget.productData['name']; // Accessing data from parent
     // final String description = widget.productData['description'];
     // final double price = widget.productData['price'];
-
     int _currentQuantity = 1;
+    
+
     void savRating(double) {}
 
-    void debugquan() {
-      print(_currentQuantity);
+    void changeQuan(var val) {
+      setState(() {
+        _currentQuantity = val;
+      });
+      setState(() {
+        Price = _currentQuantity * widget.bike.price;
+      });
+      print(Price);
     }
 
     List<Widget> carouselItems = [
@@ -37,8 +47,7 @@ class _ProDetailsState extends State<ProDetails> {
             .bike.thumbDetail.length, // Use thumbnumber for number of items
         itemBuilder: (context, index) {
           if (index == 0) {
-            final imageUrl =
-                '${widget.bike.thumb}'; // Construct image URL
+            final imageUrl = '${widget.bike.thumb}'; // Construct image URL
             return Image(
               image: NetworkImage(imageUrl),
               fit: BoxFit.contain, // Adjust fit as needed
@@ -145,7 +154,7 @@ class _ProDetailsState extends State<ProDetails> {
                                   fontSize: 16.0), // Adjust font size as needed
                             ),
                             Text(
-                              '${widget.bike.price}',
+                              '${widget.bike.price} VND',
                               style: TextStyle(
                                   fontSize: 16.0), // Adjust font size as needed
                             ),
@@ -165,13 +174,20 @@ class _ProDetailsState extends State<ProDetails> {
                               style: TextStyle(
                                   fontSize: 16.0), // Adjust font size as needed
                             ),
-                            InputQty.int(
-                              onQtyChanged: (val) {
-                                _currentQuantity = val;
-                              },
-                              initVal: 0,
-                              steps: 1,
-                              minVal: 0,
+                            Transform.scale(
+                              scale: 1.3,
+                              child: InputQty.int(
+                                onQtyChanged: (val) {
+                                  _currentQuantity = val;
+                                  changeQuan(val);
+                                  print(_currentQuantity);
+                                },
+                                qtyFormProps:
+                                    QtyFormProps(enableTyping: false), //
+                                initVal: 0,
+                                steps: 1,
+                                minVal: 0,
+                              ),
                             ),
                           ],
                         ),
@@ -248,10 +264,35 @@ class _ProDetailsState extends State<ProDetails> {
                           crossAxisAlignment:
                               CrossAxisAlignment.center, // Align vertically
                           children: [
-                            Text(
-                              'title',
-                              style: TextStyle(
-                                  fontSize: 16.0), // Adjust font size as needed
+                            Column(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(0.4, 0, 0.4, 4),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Total',
+                                      style: GoogleFonts.getFont(
+                                        'Poppins',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        height: 1.4,
+                                        color: Color(0xFF555555),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                    'VND: ${Price}',
+                                    style: GoogleFonts.getFont(
+                                      'Poppins',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18,
+                                      height: 1.4,
+                                      color: Color(0xFF3C3C3C),
+                                    ),
+                                  ),
+                              ],
                             ),
                             Container(
                               margin: EdgeInsets.fromLTRB(0, 1, 0, 1),
