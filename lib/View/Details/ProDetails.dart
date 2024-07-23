@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:gogogo/Model/Bike.dart';
 import 'package:gogogo/View/Details/PlusMinusBtn.dart';
 import 'package:gogogo/View/Home/AutoCarousel.dart';
 import 'package:gogogo/View/LogReg/constants.dart';
@@ -8,10 +9,8 @@ import 'package:input_quantity/input_quantity.dart';
 
 class ProDetails extends StatefulWidget {
   //final Map<String, dynamic> productData; // Data about the product
-
-  const ProDetails({
-    Key? key,
-  }) : super(key: key);
+  final Bike bike;
+  const ProDetails({Key? key, required this.bike}) : super(key: key);
 //required this.productData
   @override
   _ProDetailsState createState() => _ProDetailsState();
@@ -33,17 +32,28 @@ class _ProDetailsState extends State<ProDetails> {
 
     List<Widget> carouselItems = [
       // Your carousel item widgets here
-      Image(
-        image: NetworkImage(
-            'https://probike.templaza.net/wp-content/uploads/2023/08/2.jpg'),
-        fit: BoxFit.contain,
+      ListView.builder(
+        itemCount: widget
+            .bike.thumbDetail.length, // Use thumbnumber for number of items
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            final imageUrl =
+                '${widget.bike.thumb}'; // Construct image URL
+            return Image(
+              image: NetworkImage(imageUrl),
+              fit: BoxFit.contain, // Adjust fit as needed
+            );
+          } else {
+            final imageUrl =
+                '${widget.bike.thumbDetail[index]}'; // Construct image URL
+            return Image(
+              image: NetworkImage(imageUrl),
+              fit: BoxFit.contain, // Adjust fit as needed
+            );
+          }
+        },
       ),
 
-      Image(
-        image: NetworkImage(
-            'https://probike.templaza.net/wp-content/uploads/2023/08/5.jpg'),
-        fit: BoxFit.contain,
-      )
       // 'assets/images/poster-bike-ride-called-big-bicyclist_40382-409.avif'
     ];
     return Scaffold(
@@ -110,7 +120,7 @@ class _ProDetailsState extends State<ProDetails> {
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              'bicycle', //cate
+                              '${widget.bike.brand}', //cate
                               style: GoogleFonts.getFont(
                                 'Poppins',
                                 fontWeight: FontWeight.w500,
@@ -130,12 +140,12 @@ class _ProDetailsState extends State<ProDetails> {
                               CrossAxisAlignment.center, // Align vertically
                           children: [
                             Text(
-                              'title',
+                              '${widget.bike.name}',
                               style: TextStyle(
                                   fontSize: 16.0), // Adjust font size as needed
                             ),
                             Text(
-                              'price',
+                              '${widget.bike.price}',
                               style: TextStyle(
                                   fontSize: 16.0), // Adjust font size as needed
                             ),
@@ -221,7 +231,7 @@ class _ProDetailsState extends State<ProDetails> {
                                 padding: EdgeInsets.all(
                                     4), // Adjust padding as needed
                                 child: Text(
-                                  'DAISJDASDPASDASDASDSRTHBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+                                  '${widget.bike.description}',
                                   style: GoogleFonts.getFont('Poppins'),
                                 ),
                               ),
@@ -229,7 +239,7 @@ class _ProDetailsState extends State<ProDetails> {
                             // Replace with your content widget
                           ),
                         ),
-                        
+
                         Row(
                           mainAxisSize:
                               MainAxisSize.max, // Set width to full screen

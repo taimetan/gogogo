@@ -43,7 +43,7 @@ class _XeTabState extends State<XeTab> {
                       onTap: () => {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ProDetails()),
+                          MaterialPageRoute(builder: (context) => ProDetails(bike: product,)),
                         )
                       },
                       child: Container(
