@@ -34,12 +34,14 @@ class _ProDetailsState extends State<ProDetails> {
     List<Widget> carouselItems = [
       // Your carousel item widgets here
       Image(
-        image: AssetImage('assets/images/bike.png'),
+        image: NetworkImage(
+            'https://probike.templaza.net/wp-content/uploads/2023/08/2.jpg'),
         fit: BoxFit.contain,
       ),
 
       Image(
-        image: AssetImage('assets/images/bike.png'),
+        image: NetworkImage(
+            'https://probike.templaza.net/wp-content/uploads/2023/08/5.jpg'),
         fit: BoxFit.contain,
       )
       // 'assets/images/poster-bike-ride-called-big-bicyclist_40382-409.avif'
@@ -69,17 +71,33 @@ class _ProDetailsState extends State<ProDetails> {
             child: Container(
               height:
                   MediaQuery.of(context).size.height * 0.4, // Set height to 40%
+
+              // Add decoration with a box shadow
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color:
+                        Colors.grey.withOpacity(0.5), // Gray color with opacity
+                    blurRadius: 10.0, // Blur radius of the shadow
+                    spreadRadius: 5.0, // Spread radius of the shadow (optional)
+                    offset: Offset(
+                        2.0, 2.0), // Offset the shadow slightly (optional)
+                  ),
+                ],
+              ),
+
               child: AutoSwipeCarousel(
                 children: carouselItems,
               ),
             ),
           ),
           Container(
+            margin: EdgeInsets.all(20),
             padding: const EdgeInsets.symmetric(
-                horizontal: 20.0), // Shrink 30px left and right
+                horizontal: 10.0), // Shrink 30px left and right
             decoration: BoxDecoration(
-              border: Border.all(color: greyColor),
-            ),
+                border: Border.all(color: greyColor),
+                borderRadius: BorderRadius.circular(20)),
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: SingleChildScrollView(
@@ -123,6 +141,7 @@ class _ProDetailsState extends State<ProDetails> {
                             ),
                           ],
                         ),
+                        Text(''),
                         Row(
                           mainAxisSize:
                               MainAxisSize.max, // Set width to full screen
@@ -151,31 +170,34 @@ class _ProDetailsState extends State<ProDetails> {
                         Row(
                           mainAxisSize:
                               MainAxisSize.max, // Set width to full screen
-                          mainAxisAlignment: MainAxisAlignment
-                              .spaceBetween, // Align left and right
+                          mainAxisAlignment:
+                              MainAxisAlignment.start, // Align left and right
                           crossAxisAlignment:
-                              CrossAxisAlignment.center, // Align vertically
+                              CrossAxisAlignment.end, // Align vertically
                           children: [
-                            RatingBar(
-                                minRating: 1,
-                                maxRating: 5,
-                                initialRating: 3,
-                                allowHalfRating: true,
-                                onRatingUpdate: savRating,
-                                ratingWidget: RatingWidget(
-                                    full: Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                    ),
-                                    half: Icon(
-                                      Icons.star_half,
-                                      color: Colors.amber,
-                                    ),
-                                    empty: Icon(
-                                      Icons.star,
-                                      color: const Color.fromARGB(
-                                          255, 119, 119, 119),
-                                    ))),
+                            Transform.scale(
+                              scale: 0.65,
+                              child: RatingBar(
+                                  minRating: 1,
+                                  maxRating: 5,
+                                  initialRating: 1,
+                                  allowHalfRating: true,
+                                  onRatingUpdate: savRating,
+                                  ratingWidget: RatingWidget(
+                                      full: Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                      ),
+                                      half: Icon(
+                                        Icons.star_half,
+                                        color: Colors.amber,
+                                      ),
+                                      empty: Icon(
+                                        Icons.star,
+                                        color: const Color.fromARGB(
+                                            255, 119, 119, 119),
+                                      ))),
+                            ),
                             Text(''),
                           ],
                         ),
@@ -188,7 +210,7 @@ class _ProDetailsState extends State<ProDetails> {
                               height: 200,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(
-                                    2.0), // Border radius of 2
+                                    10.0), // Border radius of 2
                                 border: Border.all(
                                   color: Colors.green, // Green border color
                                   width:
@@ -207,6 +229,7 @@ class _ProDetailsState extends State<ProDetails> {
                             // Replace with your content widget
                           ),
                         ),
+                        
                         Row(
                           mainAxisSize:
                               MainAxisSize.max, // Set width to full screen
@@ -220,13 +243,35 @@ class _ProDetailsState extends State<ProDetails> {
                               style: TextStyle(
                                   fontSize: 16.0), // Adjust font size as needed
                             ),
-                            Text(
-                              'price',
-                              style: TextStyle(
-                                  fontSize: 16.0), // Adjust font size as needed
+                            Container(
+                              margin: EdgeInsets.fromLTRB(0, 1, 0, 1),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF43936C),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                width: 132,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 0,
+                                    vertical: 14), // Simplified padding
+                                child: Center(
+                                  // Center the text
+                                  child: Text(
+                                    'Add Order',
+                                    style: GoogleFonts.getFont(
+                                      'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                      height:
+                                          1.4, // Assuming this is line height
+                                      color: Color(0xFFFEFEFE),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
-                        ) 
+                        )
                       ],
                     )
                   ],

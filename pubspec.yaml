@@ -19,7 +19,7 @@ dependencies:
   google_fonts: ^6.2.1
   provider: ^6.1.2
   smooth_page_indicator: ^1.1.0
-
+  http: 1.2.1
   cupertino_icons: ^1.0.2
   
   form_field_validator: ^1.1.0
