@@ -1,6 +1,21 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:gogogo/API/shareprefs.dart';
+import 'package:gogogo/View/Accounts/ConfirmDel.dart';
+import 'package:gogogo/View/Accounts/EditAcc.dart';
+import 'package:gogogo/View/LogReg/Login.dart';
+
 class Account extends StatefulWidget {
-  const Account({Key? key}) : super(key: key);
+  final String number;
+  final String proName;
+  final String proURL;
+
+  const Account(
+      {Key? key,
+      required this.number,
+      required this.proName,
+      required this.proURL})
+      : super(key: key);
 
   @override
   _AccountState createState() => _AccountState();
@@ -9,14 +24,39 @@ class Account extends StatefulWidget {
 class _AccountState extends State<Account> {
   // Sample account info
   final String _name = 'John Doe';
+  bool _showPopup = false;
+  String _inputText = "";
+  // DatabaseReference ref = FirebaseDatabase
+  //                                       .instance
+  //                                       .ref("users/${name}");
+
+  //                                   print('clciked db rel');
+
+  //                                   await ref.update({
+  //                                     "Phonenum": "${number}",
+  //                                     "ProName": "${name}",
+  //                                     "proURL": "${url}",
+  //                                   });
+  void _togglePopup() {
+    setState(() {
+      _showPopup = !_showPopup;
+    });
+  }
+
+  void _onTextChanged(String text) {
+    setState(() {
+      _inputText = text;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Account'),
+        title: Text('Tài khoản'),
       ),
-      body: SingleChildScrollView( // Allow scrolling if content overflows
+      body: SingleChildScrollView(
+        // Allow scrolling if content overflows
         child: Padding(
           padding: EdgeInsets.all(20.0),
           child: Column(
@@ -25,13 +65,29 @@ class _AccountState extends State<Account> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ClipOval( // Clip image for rounded corners
-                    child: Image.asset(
-                      'assets/images/bike.png', // Replace with your asset path
-                      width: 100.0,
-                      height: 100.0,
-                      fit: BoxFit.cover, // Adjust image fit as needed
-                    ),
+                  ClipOval(
+                    child: widget.proURL != null && widget.proURL != ''
+                        ? Image.network(
+                            widget.proURL, // Use null safety operator (!)
+                            width: 100.0,
+                            height: 100.0,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) =>
+                                SizedBox(
+                              // Show placeholder widget on error
+                              width: 100.0,
+                              height: 100.0,
+                              child: Center(
+                                  child: Icon(Icons
+                                      .error)), // Or display a custom error icon
+                            ),
+                          )
+                        : Image.asset(
+                            'assets/images/bike.png', // Replace with your asset path
+                            width: 100.0,
+                            height: 100.0,
+                            fit: BoxFit.cover,
+                          ),
                   ),
                 ],
               ),
@@ -39,7 +95,11 @@ class _AccountState extends State<Account> {
 
               // Account name
               Text(
-                _name,
+                '${widget.proName}',
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '${widget.number}',
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10.0), // Add some spacing
@@ -52,7 +112,34 @@ class _AccountState extends State<Account> {
                   return ListTile(
                     title: Text(_settingsList[index]),
                     trailing: Icon(Icons.chevron_right),
-                    onTap: () => print('Tapped setting: ${_settingsList[index]}'), // Add your action
+                    onTap: () {
+                      if (index == 0) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const EditProfile(),
+                          ),
+                        );
+                      }
+                      if (index == 3) {
+                        clearUserLogin();
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>  LoginScreen(),
+                          ),
+                        );
+                      }
+                      if (index == 2) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>  ConfirmationPage(),
+                          ),
+                        );
+                      }
+                    }, // Add your action
                   );
                 },
               ),
@@ -66,10 +153,8 @@ class _AccountState extends State<Account> {
   // Sample settings list
   final List<String> _settingsList = [
     'Edit Profile',
-    'Change Password',
-    'Notifications',
-    'Privacy Settings',
+    'Admin Function',
+    'Delete my account',
     'Logout',
   ];
 }
- 

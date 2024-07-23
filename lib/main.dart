@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:gogogo/View/LogoSplashScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    
+      options: FirebaseOptions(
+    apiKey: 'AIzaSyBql49pGThXtbA-WjHaZmwigvHeDWEfdAo',
+    appId: '1:954182703965:android:058215886cdf84d66166b4',
+    messagingSenderId: '954182703965',
+    projectId: 'flutter-582d3',
+    storageBucket: 'flutter-582d3.appspot.com',
+    databaseURL: 'https://flutter-582d3-default-rtdb.asia-southeast1.firebasedatabase.app'
+    
+  ));
+  
   runApp(const MyApp());
 }
 
@@ -9,6 +24,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +48,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  LogoSplashScreen(),
+      home: LogoSplashScreen(),
     );
   }
 }

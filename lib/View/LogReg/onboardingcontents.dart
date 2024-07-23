@@ -14,7 +14,7 @@ class OnbordingContent extends StatelessWidget {
 
   final bool isTextOnTop;
   final String title, description, image;
-
+  
   @override
   Widget build(BuildContext context) {
     return Column(

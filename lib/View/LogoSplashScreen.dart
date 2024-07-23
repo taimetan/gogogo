@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gogogo/API/shareprefs.dart';
 import 'package:gogogo/Utils/size_utils.dart';
+import 'package:gogogo/View/Home/Home_skele.dart';
 import 'package:gogogo/View/LogReg/Regis.dart';
 
 import 'package:gogogo/WidgetsAssets/custom_image_view.dart';
@@ -29,13 +31,22 @@ class LogoSplashScreen extends StatelessWidget {
                       alignment: Alignment.topRight,
                       child: Container(
                         child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context, // Current context
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      Regis()), // Route to Regis widget
-                            );
+                          onTap: () async {
+                            if (await isLoggedIn()) {
+                              Navigator.push(
+                                context, // Current context
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        HomeSKE()), // Route to Regis widget
+                              );
+                            } else {
+                              Navigator.push(
+                                context, // Current context
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Regis()), // Route to Regis widget
+                              );
+                            }
                           },
                           child: Text(
                             'Skip',

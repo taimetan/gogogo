@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -7,6 +8,7 @@ import 'package:gogogo/View/Home/AutoCarousel.dart';
 import 'package:gogogo/View/LogReg/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:input_quantity/input_quantity.dart';
+import 'package:intl/intl.dart';
 
 class ProDetails extends StatefulWidget {
   //final Map<String, dynamic> productData; // Data about the product
@@ -19,15 +21,17 @@ class ProDetails extends StatefulWidget {
 
 class _ProDetailsState extends State<ProDetails> {
     int Price = 0;
-
   @override
   Widget build(BuildContext context) {
+    String outputPrice = NumberFormat.decimalPattern().format(Price);
     // final String name = widget.productData['name']; // Accessing data from parent
     // final String description = widget.productData['description'];
     // final double price = widget.productData['price'];
     int _currentQuantity = 1;
     
-
+    void addOrder(){
+      
+    }
     void savRating(double) {}
 
     void changeQuan(var val) {
@@ -283,7 +287,7 @@ class _ProDetailsState extends State<ProDetails> {
                                   ),
                                 ),
                                 Text(
-                                    'VND: ${Price}',
+                                    'VND: ${outputPrice}',
                                     style: GoogleFonts.getFont(
                                       'Poppins',
                                       fontWeight: FontWeight.w700,
@@ -294,28 +298,31 @@ class _ProDetailsState extends State<ProDetails> {
                                   ),
                               ],
                             ),
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0, 1, 0, 1),
+                            GestureDetector(
+                              onTap: addOrder,
                               child: Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF43936C),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                width: 132,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 0,
-                                    vertical: 14), // Simplified padding
-                                child: Center(
-                                  // Center the text
-                                  child: Text(
-                                    'Add Order',
-                                    style: GoogleFonts.getFont(
-                                      'Poppins',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                      height:
-                                          1.4, // Assuming this is line height
-                                      color: Color(0xFFFEFEFE),
+                                margin: EdgeInsets.fromLTRB(0, 1, 0, 1),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF43936C),
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  width: 132,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 0,
+                                      vertical: 14), // Simplified padding
+                                  child: Center(
+                                    // Center the text
+                                    child: Text(
+                                      'Add Order',
+                                      style: GoogleFonts.getFont(
+                                        'Poppins',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        height:
+                                            1.4, // Assuming this is line height
+                                        color: Color(0xFFFEFEFE),
+                                      ),
                                     ),
                                   ),
                                 ),
