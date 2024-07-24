@@ -145,7 +145,7 @@ class LoginState extends State<LoginScreen> {
       );
     },
     child: Text(
-      'Login',
+      'Đăng nhập',
       style: GoogleFonts.getFont(
         'Poppins',
         fontWeight: FontWeight.w500,
@@ -169,7 +169,7 @@ class LoginState extends State<LoginScreen> {
                   ),
                   children: [
                     TextSpan(
-                      text: 'Don’t have an account?',
+                      text: 'Bạn chưa có tài khoản?',
                       style: GoogleFonts.getFont(
                         'Poppins',
                         fontWeight: FontWeight.w500,
@@ -182,7 +182,7 @@ class LoginState extends State<LoginScreen> {
                       text: ' ',
                     ),
                     TextSpan(
-                      text: 'Register',
+                      text: 'Đăng ký',
                       
                       style: GoogleFonts.getFont(
                         'Poppins',
