@@ -49,7 +49,7 @@ class LogoSplashScreen extends StatelessWidget {
                             }
                           },
                           child: Text(
-                            'Skip',
+                            'Bỏ qua',
                             style: GoogleFonts.getFont(
                               'Poppins',
                               fontWeight: FontWeight.w500,
@@ -84,7 +84,7 @@ class LogoSplashScreen extends StatelessWidget {
                           Container(
                             margin: EdgeInsets.fromLTRB(0, 0, 23, 6.5),
                             child: Text(
-                              'Choose and customize your Bicycle',
+                              'Chọn và tùy chỉnh xe đạp của bạn',
                               style: GoogleFonts.getFont(
                                 'Poppins',
                                 fontWeight: FontWeight.w700,
@@ -95,7 +95,7 @@ class LogoSplashScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Customize your own drink exactly how you like it by adding any topping you like!!!',
+                            'Tùy chỉnh đồ uống của riêng bạn theo cách bạn thích bằng cách thêm bất kỳ loại topping nào bạn thích!!!',
                             style: GoogleFonts.getFont(
                               'Poppins',
                               fontWeight: FontWeight.w500,
@@ -165,7 +165,7 @@ class LogoSplashScreen extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () {/* Handle "NEXT" button press */},
                           child: Text(
-                            'NEXT',
+                            'Tiếp',
                             // ... existing text style
                           ),
                           style: ElevatedButton.styleFrom(
@@ -201,7 +201,7 @@ class LogoSplashScreen extends StatelessWidget {
                       alignment: Alignment.topRight,
                       child: Container(
                         child: Text(
-                          'Skip',
+                          'Bỏ qua',
                           style: GoogleFonts.getFont(
                             'Poppins',
                             fontWeight: FontWeight.w500,
@@ -235,7 +235,7 @@ class LogoSplashScreen extends StatelessWidget {
                           Container(
                             margin: EdgeInsets.fromLTRB(0, 0, 23, 6.5),
                             child: Text(
-                              'Choose and customize your Bicycle',
+                              'Chọn và tùy chỉnh xe đạp của bạn',
                               style: GoogleFonts.getFont(
                                 'Poppins',
                                 fontWeight: FontWeight.w700,
@@ -246,7 +246,7 @@ class LogoSplashScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Customize your own drink exactly how you like it by adding any topping you like!!!',
+                            'Tùy chỉnh đồ uống của riêng bạn theo cách bạn thích bằng cách thêm bất kỳ loại topping nào bạn thích!!!',
                             style: GoogleFonts.getFont(
                               'Poppins',
                               fontWeight: FontWeight.w500,
